@@ -18,13 +18,97 @@ Or install it yourself as:
 
     $ gem install civil
 
+## Getting started
+
+Write your service:
+
+```ruby
+class MyService
+  include Civil::Service
+
+  # Use attribute readers for input parameters
+  attr_reader :foo
+  attr_accessor :buffer
+
+  service do
+    do_something
+    do_something_else
+  end
+
+  def do_something
+    self.buffer = foo + 3
+  end
+
+  def do_something_else
+    self.buffer = buffer * 2
+  end
+end
+```
+
+Invoke your service:
+
+```ruby
+# Pass input parameters in hash
+result = MyService.call foo: 10
+
+result.data       # 26; result.data == the last return value from inside the service block
+result.conditions # {}; add conditions to indicate non-happy path results (see below)
+result.meta       # {}
+result.ideal?     # true; because there are no conditions
+result.deviant?   # false
+```
+
 ## Usage
 
-TODO: Write usage instructions here
+### Conditions
+
+Civil distinguishes between "errors" and "conditions":
+- An error results from an unexpected behavior that has nothing to do with your business logic. For example, a user attempting to access an unauthorized resource.
+- A condition results from an expected behavior that deviates from the happy path in your business logic. For example, a user attempting to upload an avatar image that's too big.
+
+Civil currently doesn't handle errors. To add a condition, use `#add_condition`:
+
+```ruby
+class SaveAvatarImage
+  ...
+
+  def check_image_size
+    add_condition :image_too_big, "The uploaded image must be < 1 MB in size" if image_size_too_big?
+  end
+end
+```
+
+Your condition will be available in your result:
+
+```ruby
+result = SaveAvatarImage.call image: image
+
+result.conditions # { image_too_big: "The uploaded image must be < 1 MB in size" }
+result.ideal?     # false
+result.deviant?   # true
+```
+
+### Metadata
+
+Metadata can be returned with any ideal or deviant result by using `add_meta`:
+
+```ruby
+class MetadataExample
+  ...
+
+  def process_doodad
+    add_meta :length, 12.5
+  end
+end
+
+result = MetadataExample.call doodad: doodad
+
+result.meta # { length: 12.5 }
+```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake false` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
