@@ -1,6 +1,6 @@
 module Civil
   module Service
-    def self.included(base)
+    def self.included(klass)
       class << klass
         # Civil::Service.service
         # Wrapper method, used within service class
@@ -46,8 +46,6 @@ module Civil
     def add_meta(type, desc = "")
       _meta[type.to_sym] = desc.to_s
     end
-
-    private
 
     def _conditions
       @_conditions ||= {}
