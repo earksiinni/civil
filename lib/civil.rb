@@ -1,5 +1,3 @@
 require "civil/version"
-
-module Civil
-  # Your code goes here...
-end
+require "civil/service"
+require "civil/result"
