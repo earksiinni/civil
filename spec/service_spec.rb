@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'civil'
 
 RSpec.describe Civil::Service do
   class TestService
