@@ -13,7 +13,7 @@ module Civil
     end
 
     def deviant?
-      conditions.present?
+      !ideal?
     end
 
     def to_s
