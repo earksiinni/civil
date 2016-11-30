@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["ersin.akinci@gmail.com"]
 
   spec.summary       = %q{Standardize your services, their inputs and their outputs}
-  spec.description   = %q{Services help keep your business logic clean, but what helps keep your services clean? Civil provides a framework for writing services that all have a standardized structure, inputs and outputs, including error handling.}
+  spec.description   = %q{Services help keep your business logic clean, but what helps keep your services clean? Civil provides a framework for writing services that all have a standardized structure, inputs and outputs.}
   spec.homepage      = "https://github.com/earksiinni/civil"
   spec.license       = "MIT"
 
