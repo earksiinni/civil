@@ -63,6 +63,7 @@ result.deviant?   # false
 ### Conditions
 
 Civil distinguishes between "errors" and "conditions":
+
 - An error results from an unexpected behavior that has nothing to do with your business logic. For example, a user attempting to access an unauthorized resource.
 - A condition results from an expected behavior that deviates from the happy path in your business logic. For example, a user attempting to upload an avatar image that's too big.
 
@@ -87,6 +88,8 @@ result.conditions # { image_too_big: "The uploaded image must be < 1 MB in size"
 result.ideal?     # false
 result.deviant?   # true
 ```
+
+Results from service calls that have no conditions are said to be "ideal" whereas those with conditions are said to be "deviant." Two helper methods, `ideal?` and `deviant?`, provide shortcuts for checking for the presence of conditions. Note that we intentionally avoid the commonly used terms "success" and "failure" as these relate to errors, not conditions.
 
 ### Metadata
 
