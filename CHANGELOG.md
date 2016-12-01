@@ -7,9 +7,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## [Unreleased]
 
 ## [1.0.0] - 2016-11-30
-### Added
-- More robust specs for Civil::Result#add_meta and Civil::Result#add_condition
-
 ### Changed
 - Result conditions and meta now store keyed arrays of data instead of key/value pairs
 
