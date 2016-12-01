@@ -14,6 +14,26 @@ RSpec.describe Civil::Service do
       it 'return the output from the last step' do
         expect(result.data).to eq((foo + 3) * 2)
       end
+
+      context 'when the service invokes add_condition' do
+        let(:foo) { 99 }
+
+        it 'adds a condition to the result' do
+          conditions = result.conditions[:foo]
+
+          expect(conditions).to contain_exactly("(first) foo is #{foo}", "(second) foo is #{foo}")
+        end
+      end
+
+      context 'when the service invokes add_meta' do
+        let(:foo) { 98 }
+
+        it 'adds a metadatum to the result' do
+          meta = result.meta[:foo]
+
+          expect(meta).to contain_exactly("(first) foo is #{foo}", "(second) foo is #{foo}")
+        end
+      end
     end
   end
 end

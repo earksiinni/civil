@@ -39,12 +39,18 @@ module Civil
       end
     end
 
-    def add_condition(type, desc = "")
-      _conditions[type.to_sym] = desc.to_s
+    def add_condition(key, condition)
+      conditions = (_conditions[key.to_sym] ||= [])
+
+      conditions << condition
+      conditions.compact!
     end
 
-    def add_meta(type, desc = "")
-      _meta[type.to_sym] = desc.to_s
+    def add_meta(key, metadatum)
+      meta = (_meta[key.to_sym] ||= [])
+
+      meta << metadatum
+      meta.compact!
     end
 
     def _conditions
