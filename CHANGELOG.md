@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.0.0] - 2016-11-30
+### Added
+- More robust specs for Civil::Result#add_meta and Civil::Result#add_condition
+
+### Changed
+- Result conditions and meta now store keyed arrays of data instead of key/value pairs
+
 ## 0.1.0 - 2016-11-30
 ### Added
 - Initial commit, imported files that I had originally written for [StandardService](https://github.com/TheTroveApp/standard-service)
@@ -15,4 +22,5 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Documentation and examples in README.md
 - This changelog :-)
 
-[Unreleased]: https://github.com/earksiinni/civil/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/earksiinni/civil/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/earksiinni/civil/compare/v0.1.0...v1.0.0
