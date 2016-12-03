@@ -109,6 +109,26 @@ result = MetadataExample.call doodad: doodad
 result.meta # { length: 12.5 }
 ```
 
+### Overriding the service block
+
+You can override the steps defined within your service class' `service` block
+by passing a block to `call`:
+
+```ruby
+class MyService
+  service do
+    step_one
+    step_two
+    result
+  end
+
+  ...
+end
+
+# The following will skip step_two
+result = MyService.call { step_one; result; }
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.1.0] - 2016-12-2
+### Added
+- You can now run services by passing in blocks to `call`. The service will
+  only run the methods in the block:
+
+  ```ruby
+  MyService.call do
+    step_one
+    # Normally, step two would get run, but let's skip it this time
+    # step_two
+    step_three
+
+    result
+  end
+  ```
+
+  If you've already defined steps inside the service class in a `service`
+  block, that's OK, the passed-in block will override.
+
 ## [1.0.0] - 2016-11-30
 ### Changed
 - Result conditions and meta now store keyed arrays of data instead of key/value pairs
