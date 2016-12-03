@@ -35,5 +35,13 @@ RSpec.describe Civil::Service do
         end
       end
     end
+
+    context 'when called with a block' do
+      let(:result) { TestService.call(foo: foo) { do_something; result } }
+
+      it 'only calls the methods passed in' do
+        expect(result.data).to eq(foo + 3)
+      end
+    end
   end
 end

@@ -24,9 +24,9 @@ module Civil
         # else
         #   ...
         # end
-        def call(params = {})
+        def call(params = {}, &block)
           service = new(params)
-          data = service._run
+          data = (block ? service.instance_eval(&block) : service._run)
 
           Civil::Result.new(data, service._conditions, service._meta)
         end
