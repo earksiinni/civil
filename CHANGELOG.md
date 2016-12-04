@@ -38,5 +38,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Documentation and examples in README.md
 - This changelog :-)
 
-[Unreleased]: https://github.com/earksiinni/civil/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/earksiinni/civil/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/earksiinni/civil/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/earksiinni/civil/compare/v0.1.0...v1.0.0
