@@ -106,7 +106,7 @@ end
 
 result = MetadataExample.call doodad: doodad
 
-result.meta # { length: 12.5 }
+result.meta # { length: {12.5} }
 ```
 
 ### Overriding the service block
@@ -129,6 +129,33 @@ end
 result = MyService.call { step_one; result; }
 ```
 
+### Filtering
+
+Filter metadata and results by using `where`:
+
+```ruby
+class BuildCars
+  ...
+
+  def trigger_some_conditions_and_metadata
+    if make == 'Wondercar'
+      add_condition :cars, { make: 'Wondercar', msg: 'no such make' }
+      add_condition :cars, { make: 'Wondercar', msg: 'not a thing' }
+      add_meta :cars, { make: 'Wondercar', msg: 'pretty cool name, though' }
+    end
+  end
+end
+
+result = BuildCars.call(makes: ['Wondercar', 'Lamecar', 'Hamilcar'])
+
+result.conditions[:cars].where(make: 'Wondercar') # {{ make: 'Wondercar', msg: 'no such make'}, { make: 'Wondercar', msg: 'not a thing'}}
+result.conditions[:cars].where(make: 'Wondercar', msg: 'not a thing') # {{ make: 'Wondercar', msg: 'not a thing'}}
+result.meta[:cars].where(make: 'Wondercar') # {{ make: 'Wondercar', msg: 'pretty cool name, though' }}
+```
+
+For filtering to work properly, you must pass a hash or an instance of
+`Civil::Hash` to `add_condition`/`add_meta`.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -143,4 +170,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/earksi
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
