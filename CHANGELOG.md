@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [2.0.0] - 2016-12-13
+### Added
+- `Civil::Hash` and `Civil::Set` utility classes created to enable filtering.
+- `Civil::Set#where` allows filtering result conditions and meta based on
+  hashes (e.g., `result.conditions[:foo].where(id: 3)`).
+### Changed
+- Result conditions and meta are now instances of `Civil::Hash`, whose values
+  can contain instances of `Civil::Set`. This change allows you to filter results
+  and will allow for other neat tricks in the future.
+- Any time a hash is passed to `add_condition` or `add_meta`, it is
+  automatically converted to and stored as a `Civil::Hash` instance to enable
+  filtering to work.
+
 ## [1.1.0] - 2016-12-2
 ### Added
 - You can now run services by passing in blocks to `call`. The service will
@@ -38,6 +51,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Documentation and examples in README.md
 - This changelog :-)
 
-[Unreleased]: https://github.com/earksiinni/civil/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/earksiinni/civil/compare/v2.0.0...HEAD
+[1.2.0]: https://github.com/earksiinni/civil/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/earksiinni/civil/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/earksiinni/civil/compare/v0.1.0...v1.0.0
