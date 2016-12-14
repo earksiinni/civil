@@ -24,6 +24,10 @@ class TestService
     when 98
       add_meta :foo, "(first) foo is #{foo}"
       add_meta :foo, "(second) foo is #{foo}"
+    when 97
+      add_condition :foo, "some condition"
+      add_condition :foo, { id: 1, msg: 'bar' }
+      add_meta :baz, { id: 2, msg: 'qux' }
     end
   end
 

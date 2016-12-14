@@ -2,7 +2,7 @@ module Civil
   class Result
     attr_reader :data, :conditions, :meta
 
-    def initialize(data, conditions = {}, meta = {})
+    def initialize(data, conditions = Civil::Hash.new, meta = Civil::Hash.new)
       @data = data
       @conditions = conditions
       @meta = meta

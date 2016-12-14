@@ -18,7 +18,7 @@ module Civil
         # Initiate service execution and return standardized result
         #
         # result = MyService.call(foo: 1, bar: 'a')
-        # 
+        #
         # if result.ideal?
         #   ...
         # else
@@ -40,25 +40,23 @@ module Civil
     end
 
     def add_condition(key, condition)
-      conditions = (_conditions[key.to_sym] ||= [])
+      conditions = (_conditions[key.to_sym] ||= Civil::Set.new)
 
       conditions << condition
-      conditions.compact!
     end
 
     def add_meta(key, metadatum)
-      meta = (_meta[key.to_sym] ||= [])
+      meta = (_meta[key.to_sym] ||= Civil::Set.new)
 
       meta << metadatum
-      meta.compact!
     end
 
     def _conditions
-      @_conditions ||= {}
+      @_conditions ||= Civil::Hash.new
     end
 
     def _meta
-      @_meta ||= {}
+      @_meta ||= Civil::Hash.new
     end
   end
 end

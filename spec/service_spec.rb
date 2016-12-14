@@ -34,6 +34,22 @@ RSpec.describe Civil::Service do
           expect(meta).to contain_exactly("(first) foo is #{foo}", "(second) foo is #{foo}")
         end
       end
+
+      context 'when filtering results' do
+        let(:foo) { 97 }
+
+        it 'only returns the appropriate conditions and metadata' do
+          valid_conditions = result.conditions[:foo].where(id: 1)
+          invalid_conditions = result.conditions[:foo].where(id: 999)
+          valid_meta = result.meta[:baz].where(id: 2)
+          invalid_meta = result.meta[:baz].where(cow: 'moo')
+
+          expect(valid_conditions).to include({ id: 1, msg: 'bar' })
+          expect(invalid_conditions).to be_empty
+          expect(valid_meta).to include({ id: 2, msg: 'qux' })
+          expect(invalid_meta).to be_empty
+        end
+      end
     end
 
     context 'when called with a block' do
