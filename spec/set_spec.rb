@@ -41,4 +41,35 @@ RSpec.describe Civil::Set do
       end
     end
   end
+
+  describe "#pluck" do
+    let(:set) { Civil::Set.new valid_items }
+    let(:valid_items) { [
+      { id: 1, desc: 'hi' },
+      { id: 2, desc: 'lol' }
+    ] }
+
+    context 'when passed in a valid key' do
+      it 'returns a set of values' do
+        valid_items.each do |attrs|
+          attrs.each do |key, value|
+            expect(set.pluck(key)).to be_a Civil::Set
+            expect(set.pluck(key)).to include(value)
+          end
+        end
+      end
+    end
+
+    context 'when passed in an invalid key' do
+      it 'raises an error' do
+        expect { set.pluck(2378572.234) }.to raise_error ArgumentError
+      end
+    end
+
+    context 'when passed in an empty key' do
+      it 'raises an error' do
+        expect { set.pluck(nil) }.to raise_error ArgumentError
+      end
+    end
+  end
 end

@@ -48,6 +48,8 @@ RSpec.describe Civil::Service do
           expect(invalid_conditions).to be_empty
           expect(valid_meta).to include({ id: 2, msg: 'qux' })
           expect(invalid_meta).to be_empty
+          expect(valid_conditions.pluck(:id)).to include 1
+          expect(valid_conditions.pluck(:id)).not_to include 2
         end
       end
     end

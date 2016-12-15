@@ -23,5 +23,15 @@ module Civil
         set
       }
     end
+
+    def pluck(key)
+      raise ArgumentError, "key must be a symbol" unless key.is_a? Symbol
+
+      self.inject(Civil::Set.new) { |set, item|
+        item.is_a?(Civil::Hash) and set.add(item[key])
+
+        set
+      }
+    end
   end
 end
