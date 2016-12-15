@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [3.1.0] - 2016-12-15
+### Added
+- `Civil::Service#merge_result(result)` merges conditions and meta from a
+  nested service call's result into the current service context.
+
 ## [3.0.0] - 2016-12-14
 ### Changed
 - `Civil::Set` now renamed to `Civil::Array` and inherit from the `::Array`
@@ -63,7 +68,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Documentation and examples in README.md
 - This changelog :-)
 
-[Unreleased]: https://github.com/earksiinni/civil/compare/v3.0.0...HEAD
+[Unreleased]: https://github.com/earksiinni/civil/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/earksiinni/civil/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/earksiinni/civil/compare/v2.1.0...v3.0.0
 [2.1.0]: https://github.com/earksiinni/civil/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/earksiinni/civil/compare/v1.1.0...v2.0.0
