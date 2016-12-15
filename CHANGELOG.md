@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [2.1.0] - 2016-12-14
+### Added
+- `Civil::Set#pluck` to enable extracting a given field from a set of
+  `Civil::Hash` instances.
+
 ## [2.0.0] - 2016-12-13
 ### Added
 - `Civil::Hash` and `Civil::Set` utility classes created to enable filtering.
