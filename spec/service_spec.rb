@@ -8,6 +8,14 @@ RSpec.describe Civil::Service do
       expect { TestService.call(foo: foo) }.not_to raise_error
     end
 
+    it 'can merge results from nested services' do
+      result = MergeService.call(foo: 97)
+
+      expect(result.data).to eq TestService.call(foo: 97).data
+      expect(result.conditions).to eq TestService.call(foo: 97).conditions
+      expect(result.meta).to eq TestService.call(foo: 97).meta
+    end
+
     context 'when called' do
       let(:result) { TestService.call(foo: foo) }
 

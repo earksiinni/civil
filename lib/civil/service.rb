@@ -58,5 +58,11 @@ module Civil
     def _meta
       @_meta ||= Civil::Hash.new
     end
+
+    def merge_result(result)
+      _conditions.merge! result.conditions
+      _meta.merge! result.meta
+      result.data
+    end
   end
 end
