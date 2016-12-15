@@ -84,7 +84,7 @@ Your condition will be available in your result:
 ```ruby
 result = SaveAvatarImage.call image: image
 
-result.conditions # { image_too_big: "The uploaded image must be < 1 MB in size" }
+result.conditions # { image_too_big: [ "The uploaded image must be < 1 MB in size" ] }
 result.ideal?     # false
 result.deviant?   # true
 ```
@@ -106,7 +106,7 @@ end
 
 result = MetadataExample.call doodad: doodad
 
-result.meta # { length: {12.5} }
+result.meta # { length: [ 12.5 ] }
 ```
 
 ### Overriding the service block
@@ -148,9 +148,9 @@ end
 
 result = BuildCars.call(makes: ['Wondercar', 'Lamecar', 'Hamilcar'])
 
-result.conditions[:cars].where(make: 'Wondercar') # {{ make: 'Wondercar', msg: 'no such make'}, { make: 'Wondercar', msg: 'not a thing'}}
-result.conditions[:cars].where(make: 'Wondercar', msg: 'not a thing') # {{ make: 'Wondercar', msg: 'not a thing'}}
-result.meta[:cars].where(make: 'Wondercar') # {{ make: 'Wondercar', msg: 'pretty cool name, though' }}
+result.conditions[:cars].where(make: 'Wondercar') # [ { make: 'Wondercar', msg: 'no such make'}, { make: 'Wondercar', msg: 'not a thing'} ]
+result.conditions[:cars].where(make: 'Wondercar', msg: 'not a thing') # [ { make: 'Wondercar', msg: 'not a thing'} ]
+result.meta[:cars].where(make: 'Wondercar') # [ { make: 'Wondercar', msg: 'pretty cool name, though' } ]
 ```
 
 For filtering to work properly, you must pass a hash or an instance of

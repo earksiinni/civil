@@ -1,5 +1,5 @@
 module Civil
-  class Set < ::Array
+  class Array < ::Array
     def initialize(*args, &block)
       if args[0].is_a? ::Array
         args[0] = args[0].map { |e| e.is_a?(::Hash) ? Civil::Hash.new.merge(e) : e }
@@ -15,20 +15,20 @@ module Civil
     end
 
     def where(attrs)
-      self.inject(Civil::Set.new) { |set, item|
-        item.is_a?(Civil::Hash) and item =~ attrs and set << item
+      self.inject(Civil::Array.new) { |arr, item|
+        item.is_a?(Civil::Hash) and item =~ attrs and arr << item
 
-        set
+        arr
       }
     end
 
     def pluck(key)
       raise ArgumentError, "key must be a symbol" unless key.is_a? Symbol
 
-      self.inject(Civil::Set.new) { |set, item|
-        item.is_a?(Civil::Hash) and set << item[key]
+      self.inject(Civil::Array.new) { |arr, item|
+        item.is_a?(Civil::Hash) and arr << item[key]
 
-        set
+        arr
       }
     end
   end

@@ -40,13 +40,13 @@ module Civil
     end
 
     def add_condition(key, condition)
-      conditions = (_conditions[key.to_sym] ||= Civil::Set.new)
+      conditions = (_conditions[key.to_sym] ||= Civil::Array.new)
 
       conditions << condition
     end
 
     def add_meta(key, metadatum)
-      meta = (_meta[key.to_sym] ||= Civil::Set.new)
+      meta = (_meta[key.to_sym] ||= Civil::Array.new)
 
       meta << metadatum
     end
